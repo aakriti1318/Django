@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block start %}
+    <h1> This is Index Page</h1>
+
+    <a href="/contact/">Contact</a> |
+    <a href="/about/">About</a>
+
+
+
+    <!-- {{peoples}} -->
+
+    <table class="container">
+        <tr>
+          <th>S. no</th>
+          <th>name</th>
+          <th>age</th>
+          <th>Can vote</th>
+        </tr>
+        {% for people in peoples %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ people.name }}</td>
+          <td>{{ people.age }}</td>
+          <td {% if people.age <= 18 %} style="background: red" {% endif %}>
+            {% if people.age >= 18 %}
+            👍🏻
+            {% else %}
+            👎🏻
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+
+      <p> {{text|truncatechars:40}}</p>
+
+      <p>
+        {% if "potato" in vegetables %}
+            Yes, we have
+        {% else %}
+            No, we don't have
+        {% endif %}
+      </p>
+
+    <p>Here is a <a href="success/">link</a> to a success page.</p>
+{% endblock %}
